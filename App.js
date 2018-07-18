@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {createBottomTabNavigator, StackNavigator} from "react-navigation";
+import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import AuthScreen from "./screens/AuthScreen";
 import MapScreen from "./screens/MapScreen";
@@ -17,7 +17,7 @@ export default class App extends React.Component {
                 screen: createBottomTabNavigator({
                     map: {screen: MapScreen},
                     deck: {screen: DeckScreen},
-                    review: StackNavigator({
+                    review: createStackNavigator({
                         review: {screen: ReviewScreen},
                         setting: {screen: SettingScreen},
                     })
