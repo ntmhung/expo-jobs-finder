@@ -2,15 +2,36 @@
  * Created by minhhung on 7/18/18.
  */
 import React, {Component} from "react";
-import {ScrollView, View, Text} from "react-native";
+import {ScrollView, View, Text, Dimensions} from "react-native";
+import {Button} from "react-native-elements";
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
 
-    renderSlide() {
-        return this.props.data.map((slide) => {
+    renderFinishButton(index) {
+        const {buttonStyle} = styles;
+        if (index === this.props.data.length - 1) {
             return (
-                <View key={slide.text} style={styles.slide}>
+                <Button
+                    title="I'm Ready"
+                    raised
+                    onPress={this.props.onComplete}
+                    buttonStyle={buttonStyle}
+                />
+            );
+        }
+    }
+
+    renderSlide() {
+        return this.props.data.map((slide, index) => {
+            return (
+                <View
+                    key={slide.text}
+                    style={[styles.slide, {backgroundColor: slide.color}]}
+                >
                     <Text style={styles.slideText}>{slide.text}</Text>
+                    {this.renderFinishButton(index)}
                 </View>
             );
 
@@ -22,6 +43,7 @@ class Slides extends Component {
             <ScrollView
                 horizontal
                 style={{flex: 1}}
+                pagingEnabled
             >
                 {this.renderSlide()}
             </ScrollView>
@@ -33,10 +55,17 @@ const styles = {
     slide: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: SCREEN_WIDTH
     },
     slideText: {
-        fontSize: 30
+        textAlign: 'center',
+        fontSize: 30,
+        color: '#fff'
+    },
+    buttonStyle: {
+        backgroundColor: '#0288D1',
+        marginTop: 15
     }
 };
 

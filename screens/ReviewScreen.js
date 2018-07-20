@@ -9,6 +9,7 @@ class ReviewScreen extends Component {
 
     /**
      * 'static' keyword is used to define class properties, not instance properties.
+     * class properties cannot access instance properties, ex. this.props
      * Ex: const reviewScreen = new ReviewScreen();
      *     console.log(reviewScreen.navigationOptions); //undefined
      *     console.log(ReviewScreen.navigationOptions); Object {}

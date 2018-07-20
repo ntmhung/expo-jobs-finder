@@ -2,13 +2,13 @@
  * Created by minhhung on 7/15/18.
  */
 import React, {Component} from "react";
-import { View, Text} from "react-native";
+import {View, Text} from "react-native";
 import Slides from "../components/Slides";
 
 const SLIDE_DATA = [
-    {text: 'Welcome to Job Finder'},
-    {text: 'We will help you find the jobs around your location'},
-    {text: 'Set your location, then swipe away'}
+    {text: 'Welcome to Job Finder', color: '#03A9F4'},
+    {text: 'We will help you find the jobs around your location', color: '#009688'},
+    {text: 'Set your location, then swipe away', color: '#03A9F4'}
 ];
 
 class WelcomeScreen extends Component {
@@ -17,9 +17,16 @@ class WelcomeScreen extends Component {
         tabBarVisible: false
     };
 
+    onSlidesComplete = () => {
+        this.props.navigation.navigate('auth');
+    };
+
     render() {
         return (
-            <Slides data={SLIDE_DATA}/>
+            <Slides
+                data={SLIDE_DATA}
+                onComplete={this.onSlidesComplete}
+            />
         )
     }
 }
