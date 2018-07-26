@@ -12,20 +12,30 @@ import SettingScreen from "./screens/SettingScreen";
 
 export default class App extends React.Component {
     render() {
-        const MainNavigator = createBottomTabNavigator({
-            welcome: {screen: WelcomeScreen},
-            auth: {screen: AuthScreen},
-            main: {
-                screen: createBottomTabNavigator({
-                    map: {screen: MapScreen},
-                    deck: {screen: DeckScreen},
-                    review: createStackNavigator({
-                        review: {screen: ReviewScreen},
-                        setting: {screen: SettingScreen},
+        /**
+         * Whenever react-navigation render a navigator, it instantly renders every single screen within the navigator
+         */
+        const MainNavigator = createBottomTabNavigator(
+            {
+                welcome: {screen: WelcomeScreen},
+                auth: {screen: AuthScreen},
+                main: {
+                    screen: createBottomTabNavigator({
+                        map: {screen: MapScreen},
+                        deck: {screen: DeckScreen},
+                        review: createStackNavigator({
+                            review: {screen: ReviewScreen},
+                            setting: {screen: SettingScreen},
+                        })
                     })
-                })
+                }
+            }, {
+                navigationOptions: {
+                    tabBarVisible: false
+                },
+                lazy: true
             }
-        });
+        );
 
 
         return (
