@@ -2,7 +2,9 @@
  * Created by minhhung on 7/15/18.
  */
 import React, {Component} from "react";
-import {View, Text} from "react-native";
+import {View, Text, AsyncStorage} from "react-native";
+import {AppLoading} from "expo";
+import _ from "lodash";
 import Slides from "../components/Slides";
 
 const SLIDE_DATA = [
@@ -12,17 +14,35 @@ const SLIDE_DATA = [
 ];
 
 class WelcomeScreen extends Component {
+    state = {token: null};
+
+    async componentWillMount() {
+        let token = await AsyncStorage.getItem('fb_token');
+        if (token) {
+            this.setState({token: true});
+            this.props.navigation.navigate('map');
+        } else {
+            this.setState({token: false});
+        }
+    }
+
     onSlidesComplete = () => {
         this.props.navigation.navigate('auth');
     };
 
     render() {
-        return (
-            <Slides
-                data={SLIDE_DATA}
-                onComplete={this.onSlidesComplete}
-            />
-        )
+        if (_.isNull(this.state.token)) {
+            return <AppLoading/>;
+        }
+        if(!this.state.token){
+            return (
+                <Slides
+                    data={SLIDE_DATA}
+                    onComplete={this.onSlidesComplete}
+                />
+            )
+        }
+        return <View/>;
     }
 }
 

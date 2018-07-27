@@ -33,6 +33,11 @@ export default class App extends React.Component {
                 navigationOptions: {
                     tabBarVisible: false
                 },
+                /*
+                 * Use to not load up any other screen until actually to go there, the opposite is exactly the same.
+                 * When user navigate to another screen, react-navigation will not attempt to stop rendering the screen
+                 * just came from
+                 */
                 lazy: true
             }
         );
