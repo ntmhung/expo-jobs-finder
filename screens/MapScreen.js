@@ -1,25 +1,25 @@
 /**
  * Created by minhhung on 7/15/18.
  */
-import React, {Component} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
-import {Button} from 'react-native-elements';
-import { MapView } from 'expo';
-import {connect} from 'react-redux';
-import {fetchJobs} from '../actions';
+import React, {Component} from "react";
+import {View, Text, ActivityIndicator} from "react-native";
+import {Button} from "react-native-elements";
+import {MapView} from "expo";
+import {connect} from "react-redux";
+import {fetchJobs} from "../actions";
 
 class MapScreen extends Component {
     state = {
         mapLoaded: false,
         region: {
-            latitude: 37,
-            longitude: -122,
+            latitude: 34.092529,
+            longitude: -118.328764,
             latitudeDelta: 0.09,
             longitudeDelta: 0.04
         }
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.setState({mapLoaded: true});
     }
 
@@ -33,8 +33,8 @@ class MapScreen extends Component {
         });
     };
 
-    render(){
-        if(!this.state.mapLoaded){
+    render() {
+        if (!this.state.mapLoaded) {
             return (
                 <View style={{flex: 1, justifyContent: 'center'}}>
                     <ActivityIndicator size="large"/>
