@@ -8,12 +8,14 @@ import {MapView} from "expo";
 import {Card} from "react-native-elements";
 import Swipe from "../components/Swipe";
 import {parseTime} from "../helpers";
+import {likeJob} from '../actions';
 
 class DeckScreen extends Component {
+
     renderCard(job) {
         const initialRegion = {
-            latitude: '',
-            longitude: '',
+            latitude: job.latitude,
+            longitude: job.longitude,
             latitudeDelta: 0.045,
             longitudeDelta: 0.02
         };
@@ -54,11 +56,12 @@ class DeckScreen extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{marginTop: 10}}>
                 <Swipe
                     data={this.props.jobs}
                     renderCard={this.renderCard}
                     renderNoMoreCards={this.renderNoMoreCards}
+                    onSwipeRight={job => this.props.likeJob(job)}
                 />
             </View>
         )
@@ -77,4 +80,4 @@ const mapStateToProps = ({jobs}) => {
     return {jobs: jobs.results};
 };
 
-export default connect(mapStateToProps, {})(DeckScreen);
+export default connect(mapStateToProps, {likeJob})(DeckScreen);

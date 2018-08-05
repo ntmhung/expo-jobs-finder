@@ -5,8 +5,10 @@
 import {combineReducers} from 'redux';
 import auth from './AuthReducer';
 import jobs from './JobsReducer';
+import likedJobs from './LikesReducer';
 
 export default combineReducers({
     auth,
-    jobs
+    jobs,
+    likedJobs
 })
