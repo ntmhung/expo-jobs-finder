@@ -39,7 +39,7 @@ class ReviewScreen extends Component {
 
     renderLikedJobs() {
         return this.props.likedJobs.map(job => {
-            const {company, created_at, url, latitude, longitude} = job;
+            const {company, created_at, url, latitude, longitude, title, id} = job;
             const initialRegion = {
                 latitude,
                 longitude,
@@ -48,7 +48,7 @@ class ReviewScreen extends Component {
             };
 
             return (
-                <Card>
+                <Card title={title} key={id}>
                     <View style={{height: 200}}>
                         <MapView
                             style={{flex: 1}}
@@ -83,6 +83,7 @@ class ReviewScreen extends Component {
 const styles = {
     detailWrapper: {
         marginBottom: 10,
+        marginTop: 10,
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
