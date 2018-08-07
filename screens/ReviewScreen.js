@@ -4,7 +4,7 @@
 import React, {Component} from "react";
 import {ScrollView, View, Text, Platform, Linking} from "react-native";
 import {MapView} from 'expo';
-import {Card, Button} from "react-native-elements";
+import {Card, Button,Icon} from "react-native-elements";
 import {connect} from "react-redux";
 import {parseTime} from "../helpers";
 
@@ -23,7 +23,7 @@ class ReviewScreen extends Component {
      */
 
     static navigationOptions = ({navigation}) => ({
-        headerTitle: 'Review Job',
+        title: 'Review Jobs',
         headerRight: <Button
             title="Settings"
             onPress={()=> {

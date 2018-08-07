@@ -27,6 +27,11 @@ export default class App extends React.Component {
                             review: {screen: ReviewScreen},
                             setting: {screen: SettingScreen},
                         })
+                    },{
+                        tabBarOptions: {
+                            labelStyle: {fontSize: 12},
+                            showIcon: true
+                        }
                     })
                 }
             }, {

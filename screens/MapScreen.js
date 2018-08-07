@@ -3,7 +3,7 @@
  */
 import React, {Component} from "react";
 import {View, Text, ActivityIndicator} from "react-native";
-import {Button} from "react-native-elements";
+import {Button, Icon} from "react-native-elements";
 import {MapView} from "expo";
 import {connect} from "react-redux";
 import {fetchJobs} from "../actions";
@@ -18,6 +18,17 @@ class MapScreen extends Component {
             longitudeDelta: 0.04
         }
     };
+
+    static navigationOptions = ({navigation}) => ({
+        title: 'Map',
+        tabBarIcon: ({tintColor}) => {
+            return <Icon
+                        name="my-location"
+                        size={30}
+                        color={tintColor}
+                    />
+        }
+    });
 
     componentDidMount() {
         this.setState({mapLoaded: true});
