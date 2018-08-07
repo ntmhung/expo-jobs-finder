@@ -6,7 +6,7 @@ import axios from "axios";
 import reverseGeoCode from "latlng-to-zip";
 import qs from "qs";
 import {map} from 'p-iteration';
-import {FETCH_JOBS, LIKE_JOB} from "./type";
+import {FETCH_JOBS, LIKE_JOB, CLEAR_LIKED_JOBS} from "./type";
 
 const JOB_ROOT_URL = 'https://jobs.github.com/positions.json?';
 const JOB_QUERY_PARAMS = {
@@ -44,5 +44,11 @@ export const likeJob = (job) => {
     return {
         type: LIKE_JOB,
         payload: job
+    }
+};
+
+export const clearLikedJobs = () => {
+    return {
+        type: CLEAR_LIKED_JOBS
     }
 };
