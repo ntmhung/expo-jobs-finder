@@ -1,6 +1,7 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
+import {Button, Icon} from "react-native-elements";
 import {Provider} from "react-redux";
 import stores from "./stores";
 import WelcomeScreen from "./screens/WelcomeScreen";
@@ -15,6 +16,20 @@ export default class App extends React.Component {
         /**
          * Whenever react-navigation render a navigator, it instantly renders every single screen within the navigator
          */
+        const reviewNavigator = createStackNavigator({
+            review: {screen: ReviewScreen},
+            setting: {screen: SettingScreen},
+        });
+        reviewNavigator.navigationOptions = {
+            title: "Review",
+            tabBarIcon: ({tintColor}) => {
+                return <Icon
+                    name="my-location"
+                    size={30}
+                    color={tintColor}
+                />
+            }
+        };
         const MainNavigator = createBottomTabNavigator(
             {
                 welcome: {screen: WelcomeScreen},
@@ -23,15 +38,7 @@ export default class App extends React.Component {
                     screen: createBottomTabNavigator({
                         map: {screen: MapScreen},
                         deck: {screen: DeckScreen},
-                        review: createStackNavigator({
-                            review: {screen: ReviewScreen},
-                            setting: {screen: SettingScreen},
-                        })
-                    },{
-                        tabBarOptions: {
-                            labelStyle: {fontSize: 12},
-                            showIcon: true
-                        }
+                        review: reviewNavigator
                     })
                 }
             }, {
