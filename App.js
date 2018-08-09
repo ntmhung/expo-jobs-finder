@@ -1,7 +1,7 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
-import {Button, Icon} from "react-native-elements";
+import {Icon} from "react-native-elements";
 import {Provider} from "react-redux";
 import stores from "./stores";
 import WelcomeScreen from "./screens/WelcomeScreen";
@@ -63,7 +63,7 @@ export default class App extends React.Component {
 
 
         return (
-            <Provider store={stores}>
+            <Provider store={stores.store}>
                 <MainNavigator />
             </Provider>
         );
