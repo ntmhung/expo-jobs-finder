@@ -24,7 +24,7 @@ export default class App extends React.Component {
             title: "Review",
             tabBarIcon: ({tintColor}) => {
                 return <Icon
-                    name="my-location"
+                    name="favorite"
                     size={30}
                     color={tintColor}
                 />
@@ -39,6 +39,13 @@ export default class App extends React.Component {
                         map: {screen: MapScreen},
                         deck: {screen: DeckScreen},
                         review: reviewNavigator
+                    }, {
+                        tabBarPosition: 'bottom',
+                        //disable Swipe feature on Android
+                        swipeEnabled: false,
+                        tabBarOptions: {
+                            labelStyle: {fontSize: 12}
+                        }
                     })
                 }
             }, {
