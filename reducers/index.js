@@ -11,7 +11,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['navigation'] // only navigation will be persisted
+    whitelist: ['auth', 'likedJobs'] // only state likedJobs will be persisted
 };
 
 
