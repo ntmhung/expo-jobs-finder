@@ -1,5 +1,6 @@
+import {Notifications} from "expo";
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View, Alert} from "react-native";
 import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
 import {Icon} from "react-native-elements";
 import {Provider} from "react-redux";
@@ -11,8 +12,23 @@ import MapScreen from "./screens/MapScreen";
 import DeckScreen from "./screens/DeckScreen";
 import ReviewScreen from "./screens/ReviewScreen";
 import SettingScreen from "./screens/SettingScreen";
+import registerNotifications from "./services/PushNotifications";
 
 export default class App extends React.Component {
+    componentDidMount() {
+        registerNotifications();
+        Notifications.addListener((notification) => {
+            const {data: {text}, origin} = notification;
+            if(origin === 'received' && text){
+                Alert.alert(
+                    'New Notification',
+                    text,
+                    [{text: ' OK'}]
+                )
+            }
+        });
+    }
+
     render() {
         /**
          * Whenever react-navigation render a navigator, it instantly renders every single screen within the navigator
